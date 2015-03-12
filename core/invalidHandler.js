@@ -6,6 +6,6 @@ exports.handle404 = function(req, res) {
 };
 
 exports.handle500 = function(req, res, err) {
-  res.writeHead(500, {});
-  res.end('500, ' + err);
+	res.writeHead(500, {});
+	res.end('500, ' + err);
 };

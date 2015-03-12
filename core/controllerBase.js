@@ -2,7 +2,11 @@
 var path = require('path');
 var fs = require('fs');
 var ejs = require('ejs');
+
 var invalidHandler = require('./invalidHandler')
+var config = require('../config')
+
+var ENCODING = 'utf-8';
 
 function controllerBase(req, res){
 	this.req = req;
@@ -11,9 +15,9 @@ function controllerBase(req, res){
 
 var viewEngine = {
     render: function(req, res, viewName, context){
-        var filename = './views/' + viewName;
+        var filepath = path.join(config.ROOT, config.VIEWS_DIR, viewName);
         try{
-    		var fileContent = fs.readFileSync(filename, 'utf8')	
+    		var fileContent = fs.readFileSync(filepath, ENCODING)	
     	}
     	catch(err){
     		invalidHandler.handle500(req, res, '模版文件没找到');
