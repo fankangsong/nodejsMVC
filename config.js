@@ -22,6 +22,8 @@ exports.VIEWS_DIR = 'views';
 
 exports.FAVICON = '/favicon.png';
 
+exports.POST_DIR = 'post';
+
 route.map({
 	rule: /^\/$/i,
 	controller: 'index',
