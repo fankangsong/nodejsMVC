@@ -1,6 +1,8 @@
 var fs = require('fs');
 var config = require('../config');
 
+var cache = [];
+
 var walk = function(dir, done) {
     var results = [];
     fs.readdir(dir, function(err, list) {
@@ -30,22 +32,42 @@ var walk = function(dir, done) {
     });
 };
 
+var parseFiles = function(arr){
+    var _arr = []
+    for(var i in arr){
+        _arr[i] = {
+            title: arr[i].replace(config.POST_DIR + '/' , '').replace('.md', ''),
+            link: arr[i].replace(config.POST_DIR + '/' , '').replace('.md', '')
+        }
+    }
+    return _arr;
+}
+
 
 exports.index = function(args){
+    if(args[0] === 'clear'){
+        cache = []
+    }
 	var me = this;
 	var list = [];
-	walk(config.POST_DIR, function(err, results){
-		results = results.sort();
-		for(var i in results){
-			list[i] = {
-				title: results[i].replace(config.POST_DIR + '/', '').replace('.md', ''),
-				link: results[i].replace(config.POST_DIR + '/', '').replace('.md', '')
-			}
-		}
 
-		me.render('index.html', {
-			list: list,
-			filename: config.VIEWS_DIR
-		})
-	});
+    console.log(cache.length);
+
+    if(cache.length > 0){
+        me.render('index.html', {
+            list: parseFiles(cache),
+            filename: config.VIEWS_DIR
+        })
+    }
+    else{
+        walk(config.POST_DIR, function(err, results){
+            cache = results;
+            results = results.sort();
+            me.render('index.html', {
+                list: parseFiles(results),
+                filename: config.VIEWS_DIR
+            })
+        });
+    }
+	
 }
