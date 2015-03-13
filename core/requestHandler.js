@@ -5,7 +5,6 @@ var invalidHandler = require('./invalidHandler');
 var staticFileHandler = require('./staticFileHandler')
 
 module.exports = function(req, res){
-
     var router = route.find(req.url, req.method);
     if(router.action){
         try{

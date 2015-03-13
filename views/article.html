@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
+<meta charset="utf-8">
+<title><%= title %></title>
 </head>
 <body>
 
+<%- include('views/header'); -%>
+<div class="content">
+<div class="post-bd">
 <%- post %>
-	
+</div>
+<div class="post-ft">
+    
+<div class="author">
+<p>作者<abbr title="范儿">fer</abbr>发布于<time><%= publicDate %></time><br>引用本文：http://<%= config.DOMAIN %>/article/<%= url %></p>
+</div>
+<%- include('views/footer'); -%>
 </body>
 </html>

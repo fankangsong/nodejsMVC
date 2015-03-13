@@ -8,8 +8,10 @@ exports.run = function(port){
 	port = port || 8888;
 	http.createServer(function(req, res){
 		var _postData = '';
-		req.on('data', function(chunk){
+		req.setEncoding('utf8');
 
+		req.on('data', function(chunk){
+			_postData += chunk;
 		})
 		.on('end', function(){
 			req.post = querystring.parse(_postData);

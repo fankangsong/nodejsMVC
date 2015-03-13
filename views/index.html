@@ -2,11 +2,17 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Home</title>
 </head>
 <body>
-
-<h1><%= title %></h2>
-
+<%- include('views/header'); -%>
+<div class="content">
+	<ul>
+		<% for(var i = list.length - 1; i >= 0; i--){ %>
+		<li><a href="article/<%= list[i].link %>"><%= list[i].title %></a></li>
+		<% } %>
+	</ul>
+</div>
+<%- include('views/footer'); -%>
 </body>
 </html>

@@ -18,13 +18,17 @@ exports.article = function(args){
 	
 	fs.readFile(postpath, 'utf-8', function(err, file){
         if(err){
-        	console.log(err);
             invalidHandler.handle404(me.req, me.res);
             return;
         }
-        var ext = (ext = path.extname(postpath)) ? ext.slice(1) : 'text';
+        var title = /^\#\s*.+/.exec(file).join('').replace(/^\#\s*/, '');
 	    me.render('article.html', {
-	    	post: marked(file)
+	    	filename: config.VIEWS_DIR,
+	    	title: title,
+	    	publicDate: /^\d+\-\d+\-\d+/.exec(args[0]),
+	    	post: marked(file),
+	    	url: args[0],
+	    	config: config
 	    });
     });
 }

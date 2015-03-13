@@ -27,9 +27,10 @@ exports.map = function(map){
 };
 
 exports.find = function(url, method){
-    url = url.toLowerCase()
+    url = url.toLowerCase();
+    method = method.toLowerCase();
     var route = {controller: null, action: null, arguments: null};
-    var r = routes[method.toLowerCase()];
+    var r = routes[method];
 
     for(var i in r){
         if(r[i].rule.test(url)){
