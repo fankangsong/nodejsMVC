@@ -51,7 +51,6 @@ exports.index = function(args){
 	var me = this;
 	var list = [];
 
-    console.log(cache.length);
 
     if(cache.length > 0){
         me.render('index.html', {

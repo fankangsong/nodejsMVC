@@ -2,16 +2,16 @@ var route = require('./core/route');
 
 
 exports.CONTENT_TYPE = {
-    css: 'text/css',
-    gif: 'image/gif',
-    html: 'text/html; charset=UTF-8',
-    jpe: 'image/jpeg',
-    jpeg: 'image/jpeg',
-    jpg: 'image/jpeg',
-    js: 'application/x-javascript',
-    png: 'image/png',
-    text: 'text/plain; charset=UTF-8',
-    md: 'text/plain; charset=UTF-8'
+    css: 		'text/css',
+    gif: 		'image/gif',
+    html: 		'text/html; charset=UTF-8',
+    jpe: 		'image/jpeg',
+    jpeg: 		'image/jpeg',
+    jpg: 		'image/jpeg',
+    js: 		'application/x-javascript',
+    png: 		'image/png',
+    text: 		'text/plain; charset=UTF-8',
+    ico: 		'image/x-icon'
 };
 
 exports.ROOT = __dirname;
@@ -70,4 +70,12 @@ route.map({
 	controller: 'about',
 	action: 'about',
 	arguments: ''
+});
+
+route.map({
+	rule: /^\/fetch\/?\d*\/?/i,
+	controller: 'fetch',
+	action: 'start',
+	method: 'get',
+	arguments: 1
 });

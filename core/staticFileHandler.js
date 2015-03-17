@@ -15,6 +15,7 @@ exports.handle = function(req, res){
 	var filepath = url.pathname == config.FAVICON ? path.join(config.ROOT, url.pathname) : path.join(config.ROOT, config.STATIC_FILE_DIR, url.pathname);
 	
 	fs.exists(filepath, function(exists){
+
 		if(!exists){
 			invalidHandler.handle404(req, res);
 			return;
